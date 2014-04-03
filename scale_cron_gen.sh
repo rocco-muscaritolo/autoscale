@@ -13,4 +13,5 @@ else
 fi
 
 echo "  Average sysload = $load
-        Average memory use = $mem %
+        Average memory use = $mem %"
+

@@ -16,3 +16,4 @@ fi
 echo "  Average sysload = $load
         Average memory use = $mem %
         Average MaxClients use = $maxclients %"
+
