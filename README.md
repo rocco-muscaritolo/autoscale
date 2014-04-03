@@ -1,4 +1,4 @@
 autoscale
 =========
 
-Autoscale monitoring scripts
+Auto scale scripts

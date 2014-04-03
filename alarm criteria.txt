@@ -1,0 +1,6 @@
+if (metric['sysload_avg'] < 2.0 && metric['percent_memory_used'] < 30 && metric['percent_maxclients'] < 30) {
+  return new AlarmStatus(CRITICAL, 'Auto Scale servers have been over provisioned. Auto #scale group is being scaled down!');
+}
+
+return new AlarmStatus(OK, 'Auto Scale servers are being used too heavily for safe scale down.');
+
