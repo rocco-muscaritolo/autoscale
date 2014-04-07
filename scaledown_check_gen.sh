@@ -27,15 +27,10 @@ echo "metric sysload_avg float" $sysloadavg
 
 
 # Setting proper values for average memory usage from last hour
-memfree=`sar -r -s $start -e $end | grep Average | tail -n 1 | tr -s ' ' | awk '{print $2}'`
-memused=`sar -r -s $start -e $end | grep Average | tail -n 1 | tr -s ' ' | awk '{print $3}'`
-memtotal=`awk -v memfree=$memfree -v memused=$memused 'BEGIN { print memfree + memused }'`
-buffers=`sar -r -s $start -e $end | grep Average | tail -n 1 | tr -s ' ' | awk '{print $5}'`
-cached=`sar -r -s $start -e $end | grep Average | tail -n 1 | tr -s ' ' | awk '{print $6}'`
-nocache=`awk -v memused=$memused -v buffers=$buffers -v cached=$cached 'BEGIN { print memused - ( buffers + cached ) }'`
+memavg=`sar -r -s $start -e $end | grep Average | tail -n 1 | tr -s ' '`
 
 # Find use percentage
-mempercentage=`awk -v nocache=$nocache -v memtotal=$memtotal 'BEGIN { print nocache * 100 / memtotal }'`
+mempercentage=`echo $memavg | awk '{ print ( $3 - ( $5 + $6 ) ) * 100 / ( $2 + $3 ) }'`
 
 # Print metric memory
 echo "metric percent_memory_used float" $mempercentage
