@@ -8,12 +8,13 @@
 #
 #return new AlarmStatus(OK, 'Auto Scale servers are being used too heavily for safe scale down.');
 
-########################################################################################################################
-
 
 # Getting time parameters for sar command
 end=`date | awk '{ print $4}'`
 start=`date -d "1 hour ago" | awk '{ print $4}'`
+
+
+########################################################################################################################
 
 
 # Find average sysload from last hour
